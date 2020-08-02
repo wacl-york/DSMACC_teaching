@@ -1,2 +1,5 @@
 *.o
 *.old
+fort.*
+*.mod
+tuvlog.txt
