@@ -829,7 +829,8 @@ C     ENDIF
 	
 	ELSEIF (myld.EQ.2) THEN
 
-	   OPEN(UNIT=kin,FILE='DATAJ1/YLD/NO3_Johnston96.yld',STATUS='old') 
+	   OPEN(UNIT=kin,FILE='DATAJ1/YLD/NO3_Johnston96.yld',
+     &          STATUS='old') 
          READ(kin,*) 
          READ(kin,*) 
          READ(kin,*) 
