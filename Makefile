@@ -1,5 +1,5 @@
   FC         = gfortran
-  FCFLAGS   = -cpp -mcmodel=medium 
+  FCFLAGS   = -cpp -mcmodel=medium
 ##############################################################################
 
 PROG = model 
