@@ -48,7 +48,7 @@ SUBROUTINE InitVal (counter, Inputfile )
   CHARACTER(LEN=15) :: test
   REAL(kind=dp) :: concs(10000)
   REAL(kind=dp) :: oldvar(10000)
-  LOGICAL :: SPECIAL
+  LOGICAL :: SPECIAL = .FALSE.
   INTEGER :: COUNT_NOX_CONSTRAINTS
   INTEGER :: IOS
   INTEGER :: STAT
