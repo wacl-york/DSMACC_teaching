@@ -74,11 +74,6 @@ SUBROUTINE InitVal (counter, Inputfile )
 ! set everything to zero for the first iteration
 ! after that if doing a constrained run don't
      LINECOUNT=0
-!kilicomu     DO WHILE (.NOT. (IS_IOSTAT_END(21)))
-!kilicomu       READ (21,*)
-!kilicomu       LINECOUNT=LINECOUNT+1
-!kilicomu     ENDDO
-
      DO
        READ(21, *, IOSTAT=STAT) 
        IF (STAT /= 0) EXIT
@@ -133,12 +128,7 @@ SUBROUTINE InitVal (counter, Inputfile )
 
   IF (COUNTER .NE. 0) THEN 
 
-!kilicomu  READ (21,'(10000(e15.4,x))') concs
-!kilicomu  IF (IS_IOSTAT_END(21)) THEN
-!kilicomu     LAST_POINT=.TRUE.
-!kilicomu  endif
-
-  READ (21, '(10000(e15.4,x))', IOSTAT=STAT)
+  READ (21, '(10000(e15.4,x))', IOSTAT=STAT) concs
   IF (STAT /= 0) LAST_POINT = .TRUE.
 
   DO I=1,10000
