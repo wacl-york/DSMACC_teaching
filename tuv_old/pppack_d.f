@@ -2258,7 +2258,7 @@ c             for  x , and store  x  in  bcoef .
       call bchslv ( q, k, n, bcoef )
                                         return
       end
-      subroutine l2err ( prfun , ftau , error )
+ckilicomu      subroutine l2err ( prfun , ftau , error )
 
 c*********************************************************************72
 c
@@ -2288,51 +2288,51 @@ c          where. otherwise, s c a l e  is such that the maximum of
 c          abs(error))  over all  i  lies between  10  and  100. this
 c          makes the printed output more illustrative.
 c
-      implicit none
-
-      integer prfun,   ie,k,l,ll,lpkmax,ltkmax,ntau,ntmax,on
-      double precision ftau(ntau),error(ntau),
-     &  break,coef,err,errmax,errl1,errl2,gtau,ppvalu,
-     &  scale,tau,totalw,weight
-      parameter (lpkmax=100,ntmax=200,ltkmax=2000)
-      common / i4data / ntau
-      common / r8data / tau(ntmax),gtau(ntmax),weight(ntmax),totalw
-      common /approx/ break(lpkmax),coef(ltkmax),l,k
-c
-      data on /'ON'/
-      errl1 = 0.0D+00
-      errl2 = 0.0D+00
-      errmax = 0.0D+00
-      do 10 ll=1,ntau
-         ftau(ll) = ppvalu (break, coef, l, k, tau(ll), 0 )
-         error(ll) = gtau(ll) - ftau(ll)
-         err = dabs(error(ll))
-         if (errmax .lt. err)   errmax = err
-         errl1 = errl1 + err*weight(ll)
-   10    errl2 = errl2 + err**2*weight(ll)
-      errl1 = errl1/totalw
-      errl2 = dsqrt(errl2/totalw)
-      print 615,errl2,errl1,errmax
-  615 format(///' least square error =',e20.6/
-     &          ' average error      =',e20.6/
-     &          ' maximum error      =',e20.6//)
-      if (prfun .ne. on)                return
-c     **  scale error curve and print  **
-      ie = 0
-      scale = 1.0D+00
-      if (errmax .ge. 10.0D+00)              go to 18
-      do 17 ie=1,9
-         scale = scale*10.0D+00
-         if (errmax*scale .ge. 10.0D+00)     go to 18
-   17    continue
-   18 do 19 ll=1,ntau
-   19    error(ll) = error(ll)*scale
-      print 620,ie,(ll,tau(ll),ftau(ll),error(ll),ll=1,ntau)
-  620 format(///14x,'approximation and scaled error curve'/7x,
-     &'data point',7x,'approximation',3x,'deviation x 10**',i1/
-     &(i4,f16.8,f16.8,f17.6))
-                                        return
-      end
+cckilicomu      implicit none
+cckilicomu
+cckilicomu      integer prfun,   ie,k,l,ll,lpkmax,ltkmax,ntau,ntmax,on
+cckilicomu      double precision ftau(ntau),error(ntau),
+cckilicomu     &  break,coef,err,errmax,errl1,errl2,gtau,ppvalu,
+cckilicomu     &  scale,tau,totalw,weight
+cckilicomu      parameter (lpkmax=100,ntmax=200,ltkmax=2000)
+cckilicomu      common / i4data / ntau
+cckilicomu      common / r8data / tau(ntmax),gtau(ntmax),weight(ntmax),totalw
+cckilicomu      common /approx/ break(lpkmax),coef(ltkmax),l,k
+cckilicomuc
+cckilicomu      data on /'ON'/
+cckilicomu      errl1 = 0.0D+00
+cckilicomu      errl2 = 0.0D+00
+cckilicomu      errmax = 0.0D+00
+cckilicomu      do 10 ll=1,ntau
+cckilicomu         ftau(ll) = ppvalu (break, coef, l, k, tau(ll), 0 )
+cckilicomu         error(ll) = gtau(ll) - ftau(ll)
+cckilicomu         err = dabs(error(ll))
+cckilicomu         if (errmax .lt. err)   errmax = err
+cckilicomu         errl1 = errl1 + err*weight(ll)
+cckilicomu   10    errl2 = errl2 + err**2*weight(ll)
+cckilicomu      errl1 = errl1/totalw
+cckilicomu      errl2 = dsqrt(errl2/totalw)
+cckilicomu      print 615,errl2,errl1,errmax
+cckilicomu  615 format(///' least square error =',e20.6/
+cckilicomu     &          ' average error      =',e20.6/
+cckilicomu     &          ' maximum error      =',e20.6//)
+cckilicomu      if (prfun .ne. on)                return
+cckilicomuc     **  scale error curve and print  **
+cckilicomu      ie = 0
+cckilicomu      scale = 1.0D+00
+cckilicomu      if (errmax .ge. 10.0D+00)              go to 18
+cckilicomu      do 17 ie=1,9
+cckilicomu         scale = scale*10.0D+00
+cckilicomu         if (errmax*scale .ge. 10.0D+00)     go to 18
+cckilicomu   17    continue
+cckilicomu   18 do 19 ll=1,ntau
+cckilicomu   19    error(ll) = error(ll)*scale
+cckilicomu      print 620,ie,(ll,tau(ll),ftau(ll),error(ll),ll=1,ntau)
+cckilicomu  620 format(///14x,'approximation and scaled error curve'/7x,
+cckilicomu     &'data point',7x,'approximation',3x,'deviation x 10**',i1/
+cckilicomu     &(i4,f16.8,f16.8,f17.6))
+cckilicomu                                        return
+cckilicomu      end
       subroutine l2knts ( break, l, k, t, n )
 
 c*********************************************************************72

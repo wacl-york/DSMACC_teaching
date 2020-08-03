@@ -51,6 +51,7 @@ SUBROUTINE InitVal (counter, Inputfile )
   LOGICAL :: SPECIAL
   INTEGER :: COUNT_NOX_CONSTRAINTS
   INTEGER :: IOS
+  INTEGER :: STAT
 
 ! Open the file with the info
 
@@ -73,9 +74,15 @@ SUBROUTINE InitVal (counter, Inputfile )
 ! set everything to zero for the first iteration
 ! after that if doing a constrained run don't
      LINECOUNT=0
-     DO WHILE (.NOT. (IS_IOSTAT_END(21)))
-	READ (21,*)
-	LINECOUNT=LINECOUNT+1
+!kilicomu     DO WHILE (.NOT. (IS_IOSTAT_END(21)))
+!kilicomu       READ (21,*)
+!kilicomu       LINECOUNT=LINECOUNT+1
+!kilicomu     ENDDO
+
+     DO
+       READ(21, *, IOSTAT=STAT) 
+       IF (STAT /= 0) EXIT
+       LINECOUNT = LINECOUNT + 1
      ENDDO
      CLOSE(21)
      WRITE (6,*) 'Input file has ',LINECOUNT,' lines'
@@ -126,10 +133,14 @@ SUBROUTINE InitVal (counter, Inputfile )
 
   IF (COUNTER .NE. 0) THEN 
 
-  READ (21,'(10000(e15.4,x))') concs
-  IF (IS_IOSTAT_END(21)) THEN
-     LAST_POINT=.TRUE.
-  endif
+!kilicomu  READ (21,'(10000(e15.4,x))') concs
+!kilicomu  IF (IS_IOSTAT_END(21)) THEN
+!kilicomu     LAST_POINT=.TRUE.
+!kilicomu  endif
+
+  READ (21, '(10000(e15.4,x))', IOSTAT=STAT)
+  IF (STAT /= 0) LAST_POINT = .TRUE.
+
   DO I=1,10000
      FOUND=0
      IF (SPEC_NAME(I) .NE. '') THEN
