@@ -15559,8 +15559,9 @@ C 333        format(0pf8.3,1pe11.4)
 
 	  IF(mabs .EQ. 1) THEN
 
-            OPEN(UNIT=kin,FILE='DATAJ1/CH3C(O)CH2CH(CH3)2
-     $/CH3C(O)CH2CH(CH3)2_Yujing.abs',STATUS='old')
+            OPEN(UNIT=kin,FILE=
+     >'DATAJ1/CH3C(O)CH2CH(CH3)2/CH3C(O)CH2CH(CH3)2_Yujing.abs',STATUS=
+     >'old')
             DO i = 1, 11
                READ(kin,*)
             ENDDO
@@ -15770,8 +15771,9 @@ C 333        format(0pf8.3,1pe11.4)
 
 	  IF(mabs .EQ. 1) THEN
 
-            OPEN(UNIT=kin,FILE='DATAJ1/CH3C(O)C3H5(CH3)2
-     $/CH3C(O)C3H5(CH3)2_Yujing.abs',STATUS='old')
+            OPEN(UNIT=kin,FILE=
+     > 'DATAJ1/CH3C(O)C3H5(CH3)2/CH3C(O)C3H5(CH3)2_Yujing.abs',STATUS=
+     > 'OLD')
             DO i = 1, 11
                READ(kin,*)
             ENDDO
