@@ -48,8 +48,10 @@ SUBROUTINE InitVal (counter, Inputfile )
   CHARACTER(LEN=15) :: test
   REAL(kind=dp) :: concs(10000)
   REAL(kind=dp) :: oldvar(10000)
-  LOGICAL :: SPECIAL
+  LOGICAL :: SPECIAL = .FALSE.
   INTEGER :: COUNT_NOX_CONSTRAINTS
+  INTEGER :: IOS
+  INTEGER :: STAT
 
 ! Open the file with the info
 
@@ -72,9 +74,10 @@ SUBROUTINE InitVal (counter, Inputfile )
 ! set everything to zero for the first iteration
 ! after that if doing a constrained run don't
      LINECOUNT=0
-     DO WHILE (NOT(EOF(21)))
-	READ (21,*)
-	LINECOUNT=LINECOUNT+1
+     DO
+       READ(21, *, IOSTAT=STAT) 
+       IF (STAT /= 0) EXIT
+       LINECOUNT = LINECOUNT + 1
      ENDDO
      CLOSE(21)
      WRITE (6,*) 'Input file has ',LINECOUNT,' lines'
@@ -112,7 +115,7 @@ SUBROUTINE InitVal (counter, Inputfile )
         SPECIAL=.FALSE.
      ENDIF
 
-     IF (SPECIAL .EQ. .TRUE.) THEN
+     IF (SPECIAL .EQV. .TRUE.) THEN
         WRITE (6,*) 'Negative Integration Time'
         WRITE (6,*) 'But not a special case'
         STOP
@@ -125,10 +128,9 @@ SUBROUTINE InitVal (counter, Inputfile )
 
   IF (COUNTER .NE. 0) THEN 
 
-  READ (21,'(10000(e15.4,x))') concs
-  IF (EOF(21)) THEN
-     LAST_POINT=.TRUE.
-  endif
+  READ (21, '(10000(e15.4,x))', IOSTAT=STAT) concs
+  IF (STAT /= 0) LAST_POINT = .TRUE.
+
   DO I=1,10000
      FOUND=0
      IF (SPEC_NAME(I) .NE. '') THEN

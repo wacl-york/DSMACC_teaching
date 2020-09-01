@@ -1,0 +1,9 @@
+*.o
+*.old
+fort.*
+*.mod
+tuvlog.txt
+model
+*.csv
+*.log
+test_data

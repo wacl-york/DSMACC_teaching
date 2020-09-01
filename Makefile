@@ -1,8 +1,5 @@
-  F90        = ifort
-  FC         = ifort
-  #F90FLAGS  = -Cpp --pca
-  # F90FLAGS   = -Cpp --chk a,e,s,u --pca --ap -O0 -g --trap
-  F90FLAGS   = -cpp  -mcmodel medium #-openmp
+  FC        = gfortran
+  FCFLAGS   = -cpp -mcmodel=medium -g
 ##############################################################################
 
 PROG = model 
@@ -27,14 +24,14 @@ all: $(PROG)
 # the executable depends on depend and also on all objects
 # the executable is created by linking all objects
 $(PROG): depend $(OBJS1) $(OBJS2)
-	$(F90) $(F90FLAGS) $(OBJS1) $(OBJS2) -o $@
+	$(FC) $(FCFLAGS) $(OBJS1) $(OBJS2) -o $@
 
 # update file dependencies
 depend $(MAKEFILE_INC): $(SRCS1) $(SRCS2)
 	$(F_makedepend) $(SRCS1) $(SRCS2)
 
 clean:
-	rm -f $(OBJS1) $(OBJS2) *.mod *.log *~ depend.mk.old
+	rm -f $(OBJS1) $(OBJS2) *.mod *.log *~ depend.mk.old fort.* tuvlog.txt
 
 distclean: clean
 	rm -f $(PROG)
@@ -45,8 +42,8 @@ distclean: clean
 # all object files *.o depend on their source files *.f90
 # the object files are created with the "-c" compiler option
 %.o: %.f90
-	$(F90) $(F90FLAGS) $(LINCLUDES) -c $<
+	$(FC) $(FCFLAGS) $(LINCLUDES) -c $<
 tuv_old/%.o: %.f
-	$(F90) $(F90FLAGS) $(LINCLUDES) -c $<
+	$(FC) $(FCFLAGS) $(LINCLUDES) -c $<
 # list of dependencies (via USE statements)
 include depend.mk

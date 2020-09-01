@@ -829,7 +829,8 @@ C     ENDIF
 	
 	ELSEIF (myld.EQ.2) THEN
 
-	   OPEN(UNIT=kin,FILE='DATAJ1/YLD/NO3_Johnston96.yld',STATUS='old') 
+	   OPEN(UNIT=kin,FILE='DATAJ1/YLD/NO3_Johnston96.yld',
+     &          STATUS='old') 
          READ(kin,*) 
          READ(kin,*) 
          READ(kin,*) 
@@ -4462,17 +4463,17 @@ c               kq = 1.93e4 * EXP(-5639/wc(iw))
 
             ELSEIF (myld .EQ. 5) THEN
 
-	       a0 = 0.35*((tlev(i)/295)**-1.28)
-	       b0 = 0.068*((tlev(i)/295)**-2.65)
-             a1 = 1.6e-19*((tlev(i)/295)**-2.38)   
-	       b1 = 0.55e-3*((tlev(i)/295)**-3.19)
-	       a2 = 1.62e-17*((tlev(i)/295)**-10.03)
-	       b2 = 1.79e-3*((tlev(i)/295)**-1.364)
-	       a3 = 26.29*((tlev(i)/295)**-6.59)
-	       b3 = 5.72e-7*((tlev(i)/295)**-2.93)
-      	     c3 = 30006*((tlev(i)/295)**-0.064)
-	       a4 = 1.67e-15*((tlev(i)/295)**-7.25)
-	       b4 = 2.08e-3*((tlev(i)/295)**-1.16)
+	       a0 = 0.35*((tlev(i)/295)**(-1.28))
+	       b0 = 0.068*((tlev(i)/295)**(-2.65))
+             a1 = 1.6e-19*((tlev(i)/295)**(-2.38))
+	       b1 = 0.55e-3*((tlev(i)/295)**(-3.19))
+	       a2 = 1.62e-17*((tlev(i)/295)**(-10.03))
+	       b2 = 1.79e-3*((tlev(i)/295)**(-1.364))
+	       a3 = 26.29*((tlev(i)/295)**(-6.59))
+	       b3 = 5.72e-7*((tlev(i)/295)**(-2.93))
+      	     c3 = 30006*((tlev(i)/295)**(-0.064))
+	       a4 = 1.67e-15*((tlev(i)/295)**(-7.25))
+	       b4 = 2.08e-3*((tlev(i)/295)**(-1.16))
 
 	       AA0 = (a0/(1 - a0))*EXP(b0*(wc(iw) - 248))
 	       AA1 = a1*EXP((-b1)*((1.0e+7/wc(iw)) - 33113))
@@ -4488,8 +4489,9 @@ c               kq = 1.93e4 * EXP(-5639/wc(iw))
 	         ELSEIF (wc(iw) .GE. 302. .AND. wc(iw) .LT. 327.5) THEN
 	       
 	            yg3(iw) = 1/(1+AA0)
-	       	  yg4(iw) = ((1 + (AA4*airden(i)) + AA3)/((1 + (AA2*airden(i))
-     $                      + AA3)*(1 + (AA4*airden(i)))))*(1 - yg3(iw))
+	            yg4(iw) = ((1 + (AA4*airden(i)) + AA3)/(
+     &                         (1 + (AA2*airden(i)) + AA3)*(
+     &                          1 + (AA4*airden(i)))))* (1 - yg3(iw))
 
                   qco = yg3(iw)
                   qch3co = yg4(iw)
@@ -15557,8 +15559,9 @@ C 333        format(0pf8.3,1pe11.4)
 
 	  IF(mabs .EQ. 1) THEN
 
-            OPEN(UNIT=kin,FILE='DATAJ1/CH3C(O)CH2CH(CH3)2
-     $/CH3C(O)CH2CH(CH3)2_Yujing.abs',STATUS='old')
+            OPEN(UNIT=kin,FILE=
+     >'DATAJ1/CH3C(O)CH2CH(CH3)2/CH3C(O)CH2CH(CH3)2_Yujing.abs',STATUS=
+     >'old')
             DO i = 1, 11
                READ(kin,*)
             ENDDO
@@ -15768,8 +15771,9 @@ C 333        format(0pf8.3,1pe11.4)
 
 	  IF(mabs .EQ. 1) THEN
 
-            OPEN(UNIT=kin,FILE='DATAJ1/CH3C(O)C3H5(CH3)2
-     $/CH3C(O)C3H5(CH3)2_Yujing.abs',STATUS='old')
+            OPEN(UNIT=kin,FILE=
+     > 'DATAJ1/CH3C(O)C3H5(CH3)2/CH3C(O)C3H5(CH3)2_Yujing.abs',STATUS=
+     > 'OLD')
             DO i = 1, 11
                READ(kin,*)
             ENDDO
