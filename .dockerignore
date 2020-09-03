@@ -1,0 +1,10 @@
+*.o
+*.old
+*~
+fort.*
+*.mod
+tuvlog.txt
+model
+*.csv
+*.log
+.git
