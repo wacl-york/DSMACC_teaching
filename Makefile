@@ -1,5 +1,5 @@
-  FC        = gfortran
-  FCFLAGS   = -cpp -mcmodel=medium -g
+FC        = gfortran
+FCFLAGS   = -cpp -mcmodel=medium -g
 ##############################################################################
 
 PROG = model 
@@ -42,8 +42,8 @@ distclean: clean
 # all object files *.o depend on their source files *.f90
 # the object files are created with the "-c" compiler option
 %.o: %.f90
-	$(FC) $(FCFLAGS) $(LINCLUDES) -c $<
+	$(FC) $(FCFLAGS) -c $<
 tuv_old/%.o: %.f
-	$(FC) $(FCFLAGS) $(LINCLUDES) -c $<
+	$(FC) $(FCFLAGS) -c $<
 # list of dependencies (via USE statements)
 include depend.mk
