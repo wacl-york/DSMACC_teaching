@@ -31,7 +31,7 @@ depend $(MAKEFILE_INC): $(SRCS1) $(SRCS2)
 	$(F_makedepend) $(SRCS1) $(SRCS2)
 
 clean:
-	rm -f $(OBJS1) $(OBJS2) *.mod *.log *~ depend.mk.old fort.* tuvlog.txt
+	rm -f $(PROG) $(OBJS1) $(OBJS2) *.mod *.log *~ depend.mk.old fort.* tuvlog.txt
 
 distclean: clean
 	rm -f $(PROG)
