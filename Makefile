@@ -8,7 +8,8 @@ FCFLAGS   = -cpp -mcmodel=medium -g
 
 # SOURCES, DEPENDENCIES, OBJECTS -----------------------------------------------
 SRCS1 = $(wildcard model_*.f90) constants.f90
-SRCS2 = $(wildcard tuv_old/*.f)
+#SRCS2 = $(wildcard tuv_old/*.f)
+SRCS2 = $(wildcard *.f)
 
 OBJS1 := $(SRCS1:.f90=.o) 
 OBJS2 := $(SRCS2:.f=.o)
@@ -29,7 +30,9 @@ dependencies $(DEPENDENCY_LIST): $(SRCS1) $(SRCS2)
 
 %.o: %.f90
 	$(FC) $(FCFLAGS) -c $<
-tuv_old/%.o: %.f
+#tuv_old/%.o: %.f
+#	$(FC) $(FCFLAGS) -c $<
+%.o: %.f
 	$(FC) $(FCFLAGS) -c $<
 
 .PHONY: clean
@@ -40,7 +43,6 @@ clean:
 	rm -f *.mod
 	rm -f *.log 
 	rm -f *~
-	rm -f depend.mk
 	rm -f fort.*
 	rm -f tuvlog.txt
 	rm -f *.nc
