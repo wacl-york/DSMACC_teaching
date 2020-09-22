@@ -1,6 +1,8 @@
 # DO NOT DELETE THIS LINE - used by make depend
 constants.o: params
 constants.o: model_Global.o model_Precision.o
+grids.o: params
+la_srb.o: params
 model_Function.o: model_Parameters.o
 model_Global.o: params
 model_Global.o: model_Parameters.o
@@ -20,8 +22,6 @@ model_Parameters.o: model_Precision.o
 model_Rates.o: constants.o model_Global.o model_Parameters.o
 model_Util.o: model_Global.o model_Integrator.o model_Monitor.o
 model_Util.o: model_Parameters.o
-grids.o: params
-la_srb.o: params
 odo3.o: params
 odrl.o: params
 rdetfl.o: params
