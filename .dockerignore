@@ -8,3 +8,5 @@ model
 *.csv
 *.log
 .git
+archive
+test_init_cons.dat
