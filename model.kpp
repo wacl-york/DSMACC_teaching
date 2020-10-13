@@ -19,7 +19,7 @@
   CHARACTER(LEN=15) :: spec_name(10000)
   INTEGER :: const_method(10000), LINECOUNT
 !Photolysis variables
-  include 'tuv_old/params'
+  include 'params'
   REAL*8::bs(19,kj), cs(19,kj),ds(19,kj)
   REAL::svj_tj(kt,kj), szas(kt), jfactno2, jfacto1d
 !End photolysis variables

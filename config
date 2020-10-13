@@ -1,3 +1,0 @@
-Host myserver
-Hostname reblets.com
-IdentityFile ~/.ssh/myserver.rsa

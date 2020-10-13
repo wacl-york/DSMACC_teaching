@@ -1,0 +1,12 @@
+*.o
+*.old
+*~
+fort.*
+*.mod
+tuvlog.txt
+model
+*.csv
+*.log
+.git
+archive
+test_init_cons.dat

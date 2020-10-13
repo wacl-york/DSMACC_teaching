@@ -7,3 +7,5 @@ model
 *.csv
 *.log
 test_data
+depend.mk.old
+test_init_cons.dat

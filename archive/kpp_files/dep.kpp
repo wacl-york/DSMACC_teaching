@@ -1,0 +1,13 @@
+#EQUATIONS
+{1.}   H2O2 = DUMMY : 1E-5 ;
+{2.}   C55OOH = DUMMY : 1E-5 ;
+{3.}   C67CO3H = DUMMY : 1E-5 ;
+{4.}   HCOCO3H = DUMMY : 1E-5 ;
+{5.}   IPRHOCO3H = DUMMY : 1E-5 ;
+{6.}   HCOCH2OOH = DUMMY : 1E-5 ;
+{7.}   HCOCH2CO3H = DUMMY : 1E-5 ;
+{8.}   NC61CO3H = DUMMY : 1E-5 ;
+{9.}  BIACETOOH = DUMMY : 1E-5 ;
+{10.}  CH3OOH = DUMMY : 1E-5 ;
+
+

@@ -78,7 +78,7 @@ CONTAINS
     REAL*8 y,dy,x,tmp(19), tmp2(19),b(19),c(19),d(19)
     integer i,n,jl
     INTEGER LK
-    include 'tuv_old/params'
+    include 'params'
   !  OPEN(13,file='photolysis.txt', status='old')
 
 !    PI=3.1415926
