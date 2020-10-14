@@ -1,0 +1,37 @@
+name: Create repo and image
+on: push
+
+jobs:
+  create_repo:
+    runs-on: ubuntu_latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Deploy CloudFormation Stack
+        uses: university-of-york/aws-cfn-deploy-action@v1.1
+        env:
+          TEMPLATE: template.yaml
+          AWS_REGION: eu-west-1
+          AWS_STACK_NAME: dsmacc-teaching-stack
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          CAPABILITIES: 'CAPABILITY_IAM CAPABILITY_NAMED_IAM'
+          ROLE_ARN: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsDeploymentRole
+          TAGS: group=FACULTY project=dsmacc_teaching status=dev pushed_by=github defined_in=cloudformation repo_name=wacl-york/dsmacc_teaching user=klcm500 team=RHPCS
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: ECR Login
+        id: loginecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build, Tag, and Push Image
+        env:
+          ECR_REGISTRY: ${{ steps.loginecr.outputs.registry }}
+          ECR_REPOSITORY: wacl/dsmacc_teaching
+          DOCKERFILE: Dockerfile
+        run: |
+          docker build -t ${ECR_REPOSITORY} -f ${DOCKERFILE}
+          docker tag ${ECR_REPOSITORY} ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
+          docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest

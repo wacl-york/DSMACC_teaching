@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: DSMACC Teaching Container Repository
+Resources:
+  DSMACC_Teaching_Repository:
+    Type: AWS::ECR:Repository
+    Properties:
+      RepositoryName: faculty/dsmacc_teaching
+      Tags:
+        name: DSMACC Teaching Repository
+        group: FACULTY
+        project: dsmacc_teaching
+        status: dev
+        pushed_by: github
+        defined_in: cloudformation
+        repo_name: wacl-york/dsmacc_teaching
+        user: klcm500
+        team: RHPCS
