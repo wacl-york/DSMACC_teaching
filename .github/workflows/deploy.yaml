@@ -32,6 +32,6 @@ jobs:
           ECR_REPOSITORY: wacl/dsmacc_teaching
           DOCKERFILE: Dockerfile
         run: |
-          docker build -t ${ECR_REPOSITORY} -f ${DOCKERFILE}
+          docker build -t ${ECR_REPOSITORY} -f ${DOCKERFILE} .
           docker tag ${ECR_REPOSITORY} ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
           docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
