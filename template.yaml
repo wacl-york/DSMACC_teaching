@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: DSMACC Teaching Container Repository
 Resources:
-  DSMACC_Teaching_Repository:
+  DSMACCTeachingRepository:
     Type: AWS::ECR:Repository
     Properties:
       RepositoryName: faculty/dsmacc_teaching
