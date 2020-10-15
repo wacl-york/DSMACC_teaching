@@ -16,7 +16,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           CAPABILITIES: 'CAPABILITY_IAM CAPABILITY_NAMED_IAM'
           ROLE_ARN: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsDeploymentRole
-          TAGS: group=FACULTY project=dsmacc_teaching status=dev pushed_by=github defined_in=cloudformation repo_name=wacl-york/dsmacc_teaching user=klcm500 team=RHPCS
+          TAGS: group=FACULTY project=dsmacc_teaching status=prod pushed_by=github defined_in=cloudformation repo_name=wacl-york/dsmacc_teaching user=klcm500 team=RHPCS
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

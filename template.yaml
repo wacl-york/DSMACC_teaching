@@ -13,7 +13,7 @@ Resources:
         - key: project
           value: dsmacc_teaching
         - key: status
-          value: dev
+          value: prod
         - key: pushed_by
           value: github
         - key: defined_in
