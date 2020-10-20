@@ -5,6 +5,9 @@ FROM centos:8 AS dsmacc_base
 RUN dnf update -y && \
     dnf group install -y "Development Tools" && \
     dnf install -y git gcc-gfortran 
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip
+    sudo ./aws/install
 #===============================================================================
 # SET UP MODEL
 #===============================================================================
