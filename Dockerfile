@@ -32,4 +32,5 @@ COPY entry.sh ./
 # BUILD MODEL AND SET CONTAINER TO RUN IT
 #-------------------------------------------------------------------------------
 RUN make
+RUN chmod +x "./entry.sh"
 ENTRYPOINT ["./entry.sh"]
