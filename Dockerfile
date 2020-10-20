@@ -27,8 +27,9 @@ COPY DATAE1 ./DATAE1
 COPY DATAJ1 ./DATAJ1
 COPY DATAS1 ./DATAS1
 COPY Makefile *.f90 *.f *.kpp usrinp params sfmakedepend ./
+COPY entry.sh ./
 #-------------------------------------------------------------------------------
 # BUILD MODEL AND SET CONTAINER TO RUN IT
 #-------------------------------------------------------------------------------
 RUN make
-ENTRYPOINT ["./model"]
+ENTRYPOINT ["./entry.sh"]
