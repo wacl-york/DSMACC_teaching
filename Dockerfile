@@ -5,6 +5,10 @@ FROM centos:8 AS dsmacc_base
 RUN dnf update -y && \
     dnf group install -y "Development Tools" && \
     dnf install -y git gcc-gfortran 
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    aws --version
 #===============================================================================
 # SET UP MODEL
 #===============================================================================
@@ -23,8 +27,10 @@ COPY DATAE1 ./DATAE1
 COPY DATAJ1 ./DATAJ1
 COPY DATAS1 ./DATAS1
 COPY Makefile *.f90 *.f *.kpp usrinp params sfmakedepend ./
+COPY entry.sh ./
 #-------------------------------------------------------------------------------
 # BUILD MODEL AND SET CONTAINER TO RUN IT
 #-------------------------------------------------------------------------------
 RUN make
-ENTRYPOINT ["./model"]
+RUN chmod +x "./entry.sh"
+ENTRYPOINT ["./entry.sh"]
